@@ -40,7 +40,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/grep.vim'
 Plug 'jpalardy/vim-slime'
-"Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 Plug 'vim-scripts/CSApprox'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
@@ -50,7 +50,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'tell-k/vim-autopep8'
-Plug 'ambv/black'
+"Plug 'ambv/black'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -110,8 +110,11 @@ filetype plugin indent on
 "*****************************************************************************"
 "" Encoding
 "autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+set foldmethod=indent
 au FileType python setlocal formatprg=autopep8\ -
-autocmd BufWritePre *.py execute ':Black'
+" autocmd BufWritePre *.py execute ':Black'
+let g:ycm_autoclose_preview_window_after_completion = 1
+noremap <s-k> :call completor#do('doc')<CR>
 map <C-b> :Black<CR>
 "autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 let g:slime_target = "tmux"
