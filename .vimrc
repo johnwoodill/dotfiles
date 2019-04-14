@@ -36,8 +36,10 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
+Plug 'morhetz/gruvbox'
 Plug 'vim-scripts/grep.vim'
 Plug 'jpalardy/vim-slime'
 Plug 'Valloric/YouCompleteMe'
@@ -48,6 +50,7 @@ Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
 Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
+Plug 'aonemd/kuroi.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tell-k/vim-autopep8'
 "Plug 'ambv/black'
@@ -110,12 +113,24 @@ filetype plugin indent on
 "*****************************************************************************"
 "" Encoding
 "autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
-set foldmethod=indent
+" set foldmethod=indent
+set t_Co=256   " This is may or may not needed.
+
+set background=dark
+" let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
+
+
+let g:slime_preserve_curpos = 1
 au FileType python setlocal formatprg=autopep8\ -
+map <C-l><C-l> <Plug>SlimeLineSend <CR>
+" nmap <c-c><c-c> <Plug>SlimeParagraphSend <s-}> <s-}> <s-{> <CR>
+"":!make && ./run<CR>
+nmap <c-c><c-c> <Plug>SlimeParagraphSend <s-}>
 " autocmd BufWritePre *.py execute ':Black'
-let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_completion = 0
 noremap <s-k> :call completor#do('doc')<CR>
-map <C-b> :Black<CR>
+" map <C-b> :Black<CR>
 "autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
@@ -176,9 +191,9 @@ set ruler
 set number
 
 let no_buffers_menu=1
-if !exists('g:not_finish_vimplug')
-  colorscheme molokai
-endif
+" if !exists('g:not_finish_vimplug')
+    " colorscheme molokai
+" endif
 
 set mousemodel=popup
 set t_Co=256
