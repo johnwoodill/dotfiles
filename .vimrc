@@ -49,6 +49,8 @@ Plug 'scrooloose/syntastic'
 Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
+Plug 'tell-k/vim-autopep8'
+Plug 'ambv/black'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -107,7 +109,11 @@ filetype plugin indent on
 "" Basic Setup
 "*****************************************************************************"
 "" Encoding
-call plug#end()
+"autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+au FileType python setlocal formatprg=autopep8\ -
+autocmd BufWritePre *.py execute ':Black'
+map <C-b> :Black<CR>
+"autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 let g:slime_dont_ask_default = 1
